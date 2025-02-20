@@ -7,14 +7,14 @@ public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField]
     private Transform[] waypoints;
-    private UnityEngine.AI.NavMeshAgent navMeshAgent;
+    private NavMeshAgent navMeshAgent;
     public GameObject player;
     private bool foundPlayer;
     private int currentWaypointIndex;
 
     private void Start()
     {
-        navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
         player = GameObject.Find("Player");
         foundPlayer = false;
         currentWaypointIndex = 0;
@@ -30,7 +30,6 @@ public class EnemyBehavior : MonoBehaviour
         {
             if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.1f)
             {
-                // Move to the next waypoint
                 currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
                 navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
             }
