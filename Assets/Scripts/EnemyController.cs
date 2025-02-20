@@ -18,6 +18,7 @@ public class EnemyBehavior : MonoBehaviour
         player = GameObject.Find("Player");
         foundPlayer = false;
         currentWaypointIndex = 0;
+        gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
     }
 
     private void Update()
@@ -41,6 +42,7 @@ public class EnemyBehavior : MonoBehaviour
         if (other.name == "Player")
         {
             foundPlayer = true;
+            gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
             Debug.Log("Player detected - attack!");
         }
     }
@@ -50,6 +52,7 @@ public class EnemyBehavior : MonoBehaviour
         if (other.name == "Player")
         {
             foundPlayer = false;
+            gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
             Debug.Log("Player out of range, resume patrol");
         }
     }

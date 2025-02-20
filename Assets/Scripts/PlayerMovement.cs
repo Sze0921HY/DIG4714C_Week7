@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         controller = gameObject.AddComponent<CharacterController>();
+        gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
     }
 
     void Update()
@@ -41,16 +42,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.name == "item")
         {
-            Debug.Log("Player Get the Item");
+            Debug.Log("Item Collected");
             Destroy(item);
-
+            gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.cyan);
         }
     }
     void OnTriggerExit(Collider other)
     {
         if (other.name == "item")
         {
-            Debug.Log("No Item Now");
+            Debug.Log("Item Gone");
         }
     }
 }
